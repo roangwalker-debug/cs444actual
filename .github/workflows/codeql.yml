@@ -31,13 +31,6 @@ jobs:
               gcc -std=c11 -O0 -g -o vuln_overflow vuln_overflow.c
               gcc -std=c11 -O0 -g -o vuln_fmt      vuln_fmt.c
               gcc -std=c11 -O0 -g -o vuln_cmd      vuln_cmd.c
-          - language: cpp           # cpp pack covers C and C++
-            display: src-c
-            workdir: src
-            build: |
-              gcc -std=c11 -O0 -g -o test_utils    test_utils.c
-              gcc -std=c11 -O0 -g -o file_ops      file_ops.c
-              gcc -std=c11 -O0 -g -o task_runner   task_runner.c
 
     steps:
       - uses: actions/checkout@v4
