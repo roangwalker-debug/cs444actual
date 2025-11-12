@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         # language: [ 'javascript', 'python', 'ccpp', 'csharp', 'go', 'java-kotlin', 'ruby', 'swift']
-        language: ['ccpp']
+        language: ['cpp']
         
     steps:
       - name: Checkout
