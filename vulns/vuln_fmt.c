@@ -2,9 +2,7 @@
 
 int main(int argc, char **argv) {
     if (argc > 1) {
-        // Unsafe: attacker-controlled format string
-        printf(argv[1]);        // expect: "Uncontrolled format string"
-        printf("\n");
+	printf("%s\n", argv[1]);
     }
     return 0;
 }

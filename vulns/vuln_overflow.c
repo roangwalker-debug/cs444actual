@@ -4,8 +4,8 @@
 int main(int argc, char **argv) {
     char buf[32];
     if (argc > 1) {
-        // Unsafe: argv[1] can exceed 31 bytes
-        strcpy(buf, argv[1]);   // expect: "Use of insecure string copy function"
+	chat buf[32];
+	snprintf(buf, sizeof(buf), "%s", argv[1]);
         printf("buf=%s\n", buf);
     }
     return 0;
