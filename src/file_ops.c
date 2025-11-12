@@ -6,7 +6,7 @@
 int write_temp_note(const char *note) {
     char tmpname[L_tmpnam];
 
-    if (tmpnam(tmpname) == NULL) return -1;
+    if (tmpnam(tmpname) == NULL) return -1;//edit
 
     FILE *f = fopen(tmpname, "w");
     if (!f) return -1;

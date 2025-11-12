@@ -6,7 +6,7 @@ int run_report_generator(void) {
     char tool[64];
 
     if (scanf("%63s", tool) != 1) {  // tip: remove width to make it riskier, but this version is still realistic
-        return -1;
+        return -1;//edit
     }
 
     // Slightly safer due to width in scanf, but still dangerous overall if tool is user-controlled

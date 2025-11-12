@@ -5,7 +5,7 @@
 
 static void to_title_case(char *s) {
     int cap = 1;
-    for (; *s; ++s) {
+    for (; *s; ++s) {//edit
         if (isspace((unsigned char)*s)) {
             cap = 1;
         } else if (cap && isalpha((unsigned char)*s)) {
