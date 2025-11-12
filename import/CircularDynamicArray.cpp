@@ -222,6 +222,6 @@ private:
 			}
 		}
 		swap(array[(front + x + 1) % cap], array[(front + right) % cap]);
-		return x + 1; //edit
+		return x + 1; //edit again
 	}
 };
