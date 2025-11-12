@@ -31,6 +31,13 @@ jobs:
               gcc -std=c11 -O0 -g -o vuln_overflow vuln_overflow.c
               gcc -std=c11 -O0 -g -o vuln_fmt      vuln_fmt.c
               gcc -std=c11 -O0 -g -o vuln_cmd      vuln_cmd.c
+          - language: cpp           # cpp pack covers C and C++
+            display: vulns-c
+            workdir: vulns
+            build: |
+              gcc -std=c11 -O0 -g -o vuln_overflow vuln_overflow.c
+              gcc -std=c11 -O0 -g -o vuln_fmt      vuln_fmt.c
+              gcc -std=c11 -O0 -g -o vuln_cmd      vuln_cmd.c
 
     steps:
       - uses: actions/checkout@v4
