@@ -1,0 +1,208 @@
+Select mode:
+ 1) Run test cases
+ 2) User mode (REPL)
+Choice: START OF SPRINT 1 and 2 TESTS: 
+
+IN: car((a b))
+ Out a
+
+In: cdr((a b))
+ Out: (b)
+
+In: isNil((a b))
+ Out: false
+
+In: isNil(nil)
+ Out: true
+
+In: isNil("x")
+ Out: false
+
+In: isSymbol(atom("x"))
+ Out: true
+
+In: isList(nil())
+ Out: true
+
+In: isTrueSexp(nil())
+ Out: false
+
+In: isTrueSexp(cons(atom("a"), nil()))
+ Out: true
+
+In: isString(atom(""hi""))
+ Out: true
+
+In: isNumber(atom("-3.14"))
+ Out: true
+
+START OF SPRINT 3 TESTS: 
+
+In: add(1,2)
+ Out: 3
+
+In: sub(5,2)
+ Out: 3
+
+In: mul(3,4)
+ Out: 12
+
+In: divd(9,3)
+ Out: 3
+
+In: mod(9,4)
+ Out: 1
+
+In: divd(9,0)
+ Out: (error . trying to divide by zero)
+
+IN: lt(2,3)
+ Out: true
+
+IN: gt(5,1)
+ Out: true
+
+IN: lte(5,5)
+ Out: true
+
+IN: gte(6,5)
+ Out: true
+
+IN: lt(3,2)
+ Out: false
+
+IN: eq(a,a)
+ Out: true
+
+IN: not(true)
+ Out: false
+
+IN: not(false)
+ Out: true
+
+START OF SPRINT 5 TESTS: 
+
+In: (quote (1 2 3))
+ Out: (1 2 3)
+
+In: (quote (add 1 2))
+ Out: (add 1 2)
+
+In: (set x 5)
+ Out: 5
+
+In: x
+ Out: 5
+
+In: y
+ Out: y
+
+In: (+ 1 2)
+ Out: 3
+
+In: (/ 9 3)
+ Out: 3
+
+In: (add (set x 1) x)
+ Out: 2
+
+In: (mul (add 1 (set x 10)) x)
+ Out: 110
+
+In: (car (quote (a b)))
+ Out: a
+
+In: (cdr (quote (a b)))
+ Out: (b)
+
+In: (cons 1 (quote (2 3)))
+ Out: (1 2 3)
+
+In: (symbol? (quote x))
+ Out: true
+
+In: (symbol? x)
+ Out: false
+
+In: (eq 3 (add 1 2))
+ Out: true
+
+In: (eq (quote a) (quote a))
+ Out: true
+
+In: (eq (quote (a b)) (quote (a b)))
+ Out: false
+
+In: (not (lt 1 2))
+ Out: false
+
+In: (gte 5 5)
+ Out: true
+
+In: (foo 1 2)
+ Out: (error . unknown error)
+
+START OF SPRINT 6 TESTS: 
+
+In: (and () (set x 1))
+ Out: ()
+In: x
+ Out: 0
+
+In: (and 5 7)
+ Out: 7
+
+In: (or 42 (set x 2))
+ Out: true
+In: x
+ Out: 0
+
+In: (or () 9)
+ Out: 9
+
+In: (if () 1 2)
+ Out: 2
+
+In: (if 3 1 2)
+ Out: 1
+
+In: (cond (() 1) (3 99))
+ Out: 99
+
+In: (cond (() 1) (() 2))
+ Out: ()
+
+START OF SPRINT 7 TESTS: 
+
+In: (define inc (x) (+ x 1))
+ Out: inc
+
+In: (inc 5)
+ Out: 6
+
+In: (inc)
+ Out: (error . arity)
+
+In: (inc 1 2)
+ Out: (error . arity)
+
+In: (usex 5)
+ Out: 15
+
+In: (fact 5)
+ Out: 120
+
+In: (+ 2 3)
+ Out: 0
+
+START OF SPRINT 8 TESTS:
+
+In: ((lambda (x) (+ x 1)) 5)
+ Out: 6
+
+In: (define square (x) (* x x))
+ Out: square
+
+In: (square 5)
+ Out: 25
+
