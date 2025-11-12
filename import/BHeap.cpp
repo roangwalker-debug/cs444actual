@@ -470,7 +470,7 @@ class BHeap {
                 recursivePrint(curr);
                 cout << endl;
                 cout << endl;
-                curr = curr->right;
+                curr = curr->right;//edit
             }
         }
 };
