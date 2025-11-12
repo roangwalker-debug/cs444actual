@@ -1,41 +1,58 @@
+# .github/workflows/codeql.yml
 name: Security — CodeQL
 
 on:
-  push:
-    branches: [ main ]
+  push: { branches: [ main ] }
   pull_request:
-
 
 permissions:
   contents: read
-  security-events: write   # needed to upload results to Code scanning
+  security-events: write
 
 jobs:
   analyze:
-    name: Analyze (${{ matrix.language }})
     runs-on: ubuntu-latest
-    timeout-minutes: 60
     strategy:
       fail-fast: false
       matrix:
-        # language: [ 'javascript', 'python', 'ccpp', 'csharp', 'go', 'java-kotlin', 'ruby', 'swift']
-        language: ['cpp']
-        
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+        include:
+          # Project A: your heap code in import/
+          - language: cpp
+            display: heap-cpp
+            workdir: import
+            build: |
+              g++ -std=c++17 -O0 -g Phase3Main.cpp -o app
 
-      - name: Initialize CodeQL
+          # Project B: the C vuln playground
+          - language: cpp           # cpp pack covers C and C++
+            display: vulns-c
+            workdir: vulns
+            build: |
+              gcc -std=c11 -O0 -g -o vuln_overflow vuln_overflow.c
+              gcc -std=c11 -O0 -g -o vuln_fmt      vuln_fmt.c
+              gcc -std=c11 -O0 -g -o vuln_cmd      vuln_cmd.c
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+
+      - name: Initialize CodeQL (${{ matrix.display }})
         uses: github/codeql-action/init@v3
         with:
           languages: ${{ matrix.language }}
-          # queries: security-extended,security-and-quality # optional suites
+          queries: +security-extended,security-and-quality
 
-      # For compiled languages, try Autobuild first (ignored for script languages)
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
+      - name: Build (${{ matrix.display }})
+        working-directory: ${{ matrix.workdir }}
+        run: ${{ matrix.build }}
 
-      - name: Perform CodeQL Analysis
+      - name: Analyze (${{ matrix.display }})
         uses: github/codeql-action/analyze@v3
         with:
-          category: "/language:${{ matrix.language }}"
+          category: "/language:${{ matrix.language }}/${{ matrix.display }}"
